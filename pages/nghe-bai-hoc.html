@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nghe: Tại nhà hàng — Học Từ Đầu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="logo">Học Từ Đầu</a>
+      <ul class="nav-links">
+        <li><a href="../index.html">Trang chủ</a></li>
+        <li><a href="tu-vung.html">Từ vựng</a></li>
+        <li><a href="nghe.html" class="active">Nghe</a></li>
+        <li><a href="noi.html">Nói</a></li>
+      </ul>
+      <div id="navAuthSlot"></div>
+    </div>
+  </header>
+
+  <div class="page-wrap">
+    <header class="page-head">
+      <p class="eyebrow">A1 · Chủ đề Food</p>
+      <h1>Hội thoại: Tại nhà hàng</h1>
+    </header>
+
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-label">
+        <span id="progressText">Đã điền 0 / 4</span>
+        <span id="progressPercent">0%</span>
+      </div>
+    </div>
+
+    <div class="dialogue-card">
+      <p class="dialogue-scene">🎧 Bấm nút loa để nghe từng câu, sau đó điền từ còn thiếu vào chỗ trống. Các từ cần điền đều nằm trong bài từ vựng "Food" bạn vừa học.</p>
+      <div id="dialogueLines"></div>
+      <button class="check-btn" id="checkAllBtn" style="margin-top:8px;">Kiểm tra đáp án</button>
+      <p class="fill-feedback" id="dialogueFeedback"></p>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      Dự án học tiếng Anh cá nhân — đang trong quá trình xây dựng.
+    </div>
+  </footer>
+
+  <script src="../assets/js/auth.js"></script>
+  <script>renderNavAuth('../');</script>
+  <script src="../assets/js/nghe-bai-hoc.js"></script>
+</body>
+</html>

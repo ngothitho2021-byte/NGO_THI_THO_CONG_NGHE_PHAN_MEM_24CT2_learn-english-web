@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đăng nhập — Học Từ Đầu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo">Học Từ Đầu</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Trang chủ</a></li>
+        <li><a href="pages/tu-vung.html">Từ vựng</a></li>
+        <li><a href="pages/nghe.html">Nghe</a></li>
+        <li><a href="pages/noi.html">Nói</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <h1>Đăng nhập</h1>
+      <p class="auth-sub">Tiếp tục lộ trình học của bạn</p>
+
+      <div class="auth-banner warn" id="authBanner"></div>
+
+      <form id="loginForm">
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="ban@email.com" required>
+        </div>
+        <div class="field">
+          <label for="password">Mật khẩu</label>
+          <input type="password" id="password" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="auth-submit">Đăng nhập</button>
+      </form>
+
+      <p class="auth-switch">
+        Chưa có tài khoản? <a href="signup.html">Đăng ký ngay</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="assets/js/auth.js"></script>
+  <script>
+    const banner = document.getElementById('authBanner');
+
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      const result = loginUser(email, password);
+
+      if (result.ok) {
+        window.location.href = 'index.html';
+        return;
+      }
+
+      if (result.reason === 'no-account') {
+        banner.textContent = 'Bạn chưa có tài khoản. Vui lòng đăng ký tài khoản trước khi đăng nhập.';
+      } else {
+        banner.textContent = 'Sai mật khẩu. Vui lòng thử lại.';
+      }
+      banner.classList.add('show');
+    });
+  </script>
+
+</body>
+</html>

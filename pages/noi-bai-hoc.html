@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nói: Gọi món ăn — Học Từ Đầu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="logo">Học Từ Đầu</a>
+      <ul class="nav-links">
+        <li><a href="../index.html">Trang chủ</a></li>
+        <li><a href="tu-vung.html">Từ vựng</a></li>
+        <li><a href="nghe.html">Nghe</a></li>
+        <li><a href="noi.html" class="active">Nói</a></li>
+      </ul>
+      <div id="navAuthSlot"></div>
+    </div>
+  </header>
+
+  <div class="page-wrap">
+    <header class="page-head">
+      <p class="eyebrow">A1 · Tình huống: Gọi món ăn</p>
+      <h1>Luyện nói: Tại nhà hàng</h1>
+    </header>
+
+    <div class="speak-card">
+      <p class="speak-scene">🎭 Bạn đóng vai <strong>khách hàng</strong>. Người phục vụ (NV) sẽ nói trước — bấm 🔊 để nghe, rồi bấm mic để nói câu trả lời của bạn.</p>
+
+      <div class="chat-log" id="chatLog"></div>
+
+      <div class="speak-controls">
+        <button class="mic-btn" id="micBtn">🎤</button>
+        <span class="speak-hint-text" id="speakHint">Bấm mic và nói câu trả lời bằng tiếng Anh.</span>
+      </div>
+
+      <button class="next-turn-btn" id="nextTurnBtn" disabled>Câu tiếp theo</button>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      Dự án học tiếng Anh cá nhân — đang trong quá trình xây dựng.
+    </div>
+  </footer>
+
+  <script src="../assets/js/auth.js"></script>
+  <script>renderNavAuth('../');</script>
+  <script src="../assets/js/noi-bai-hoc.js"></script>
+</body>
+</html>

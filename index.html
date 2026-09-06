@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Học Tiếng Anh Từ Đầu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo">Học Từ Đầu</a>
+      <ul class="nav-links">
+        <ul class="nav-links">
+    <li><a href="index.html" class="active">🏠 Trang chủ</a></li>
+    <li><a href="pages/tu-vung.html">📇 Từ vựng</a></li>
+    <li><a href="pages/nghe.html">🎧 Nghe</a></li>
+    <li><a href="pages/noi.html">🗣️ Nói</a></li>
+</ul>
+      </ul>
+      <div id="navAuthSlot"></div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow"></p>
+      <h1>Học tiếng anh đúng trình độ của bạn </h1>
+      <p>Chọn trình độ hiện tại (A1 → C2), chúng tôi sắp xếp sẵn từ vựng, bài nghe và bài luyện nói theo từng chủ đề — bạn chỉ cần đi theo, không cần tự mò mẫm.</p>
+      <div class="hero-actions">
+        <a href="#chon-trinh-do" class="btn btn-primary">Chọn trình độ của tôi</a>
+        <a href="signup.html" class="btn btn-secondary">Tạo tài khoản miễn phí</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="level-select-wrap" id="chon-trinh-do">
+    <div class="container">
+      <h2 class="page-title">Bạn đang ở trình độ nào?</h2>
+      <p class="page-sub">Chưa chắc trình độ của mình? Cứ chọn A1 — mọi lộ trình đều bắt đầu từ chủ đề dễ nhất.</p>
+      <div class="level-row" id="levelRow">
+        <button class="level-pill active" data-level="A1"><span class="code">A1</span><span class="name">Mới bắt đầu</span></button>
+        <button class="level-pill" data-level="A2"><span class="code">A2</span><span class="name">Sơ cấp</span></button>
+        <button class="level-pill" data-level="B1"><span class="code">B1</span><span class="name">Trung cấp</span></button>
+        <button class="level-pill" data-level="B2"><span class="code">B2</span><span class="name">Trên trung cấp</span></button>
+        <button class="level-pill" data-level="C1"><span class="code">C1</span><span class="name">Cao cấp</span></button>
+        <button class="level-pill" data-level="C2"><span class="code">C2</span><span class="name">Thành thạo</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <h2 class="section-title">Ba kỹ năng nền tảng</h2>
+      <p class="section-sub">Học đúng thứ tự, đừng học lan man.</p>
+      <div class="feature-grid">
+
+        <a href="pages/tu-vung.html" class="feature-card vocab">
+          <div class="icon">📇</div>
+          <h3>Từ vựng</h3>
+          <p>Flashcard theo chủ đề, có phát âm, ví dụ thật và bài tập điền từ để nhớ lâu hơn.</p>
+          <span class="status ready">Sẵn sàng học</span>
+        </a>
+
+        <a href="pages/nghe.html" class="feature-card listen">
+          <div class="icon">🎧</div>
+          <h3>Nghe</h3>
+          <p>Nghe hội thoại ngắn đúng chủ đề vừa học từ vựng, vừa nghe vừa điền từ còn thiếu.</p>
+          <span class="status ready">Sẵn sàng học</span>
+        </a>
+
+        <a href="pages/noi.html" class="feature-card speak">
+          <div class="icon">🗣️</div>
+          <h3>Nói</h3>
+          <p>Luyện hội thoại theo từng tình huống đời sống, nói và nhận lại bản ghi để tự sửa.</p>
+          <span class="status ready">Sẵn sàng học</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  
+
+  <script src="assets/js/auth.js"></script>
+  <script>
+    renderNavAuth('');
+
+    // Chọn trình độ — chỉ lưu lựa chọn, chưa lọc nội dung thật vì hiện
+    // mới có đầy đủ nội dung ở trình độ A1.
+    document.querySelectorAll('.level-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.level-pill').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        localStorage.setItem('hoc_tu_dau_level', btn.dataset.level);
+      });
+    });
+  </script>
+
+</body>
+</html>

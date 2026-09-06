@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đăng ký — Học Từ Đầu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo">Học Từ Đầu</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Trang chủ</a></li>
+        <li><a href="pages/tu-vung.html">Từ vựng</a></li>
+        <li><a href="pages/nghe.html">Nghe</a></li>
+        <li><a href="pages/noi.html">Nói</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <h1>Tạo tài khoản</h1>
+      <p class="auth-sub">Bắt đầu lộ trình học tiếng Anh của bạn</p>
+
+      <div class="auth-banner warn" id="authBanner"></div>
+
+      <form id="signupForm">
+        <div class="field">
+          <label for="name">Họ tên</label>
+          <input type="text" id="name" placeholder="Nguyễn Văn A" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="ban@email.com" required>
+        </div>
+        <div class="field">
+          <label for="password">Mật khẩu</label>
+          <input type="password" id="password" placeholder="Tối thiểu 6 ký tự" required minlength="6">
+        </div>
+        <button type="submit" class="auth-submit">Đăng ký</button>
+      </form>
+
+      <p class="auth-switch">
+        Đã có tài khoản? <a href="login.html">Đăng nhập</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="assets/js/auth.js"></script>
+  <script>
+    const banner = document.getElementById('authBanner');
+
+    document.getElementById('signupForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      const result = registerUser(name, email, password);
+
+      if (result.ok) {
+        window.location.href = 'index.html';
+        return;
+      }
+
+      banner.textContent = result.message;
+      banner.classList.add('show');
+    });
+  </script>
+
+</body>
+</html>

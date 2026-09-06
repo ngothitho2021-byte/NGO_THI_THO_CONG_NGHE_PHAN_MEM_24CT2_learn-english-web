@@ -1,0 +1,734 @@
+:root{
+  --ink:#16233F;
+  --ink-soft:#5B6B85;
+  --paper:#F4F8FF;
+  --card:#95ef89;
+  --blue:#2F6FED;
+  --blue-deep:#1E52C2;
+  --blue-soft:#E7EFFE;
+  --blue-softer:#F1F6FF;
+  --sage:#2E9B6B;
+  --sage-soft:#E3F5EC;
+  --coral:#E0574B;
+  --coral-soft:#FCEAE8;
+  --lock:#9AA6BC;
+  --lock-soft:#EEF1F6;
+  --line:#DEE6F5;
+  --radius:14px;
+  
+  --amber:var(--blue-soft);
+  --amber-deep:var(--blue--softer);
+}
+*{ box-sizing:border-box; }
+body{
+  margin:0;
+  background:var(--paper);
+  font-family:'Inter',sans-serif;
+  color:var(--ink);
+}
+a{ color:inherit; }
+.container{
+  max-width:1040px;
+  margin:0 auto;
+  padding:0 24px;
+}
+
+/* ---------- Header / Nav ---------- */
+.site-header{
+  background:var(--card);
+  border-bottom:1px solid var(--line);
+}
+.site-header .container{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:64px;
+}
+.logo{
+  font-family:'Source Serif 4',serif;
+  font-weight:600;
+  font-size:19px;
+  text-decoration:none;
+  color:var(--ink);
+}
+.nav-links{
+  display:flex;
+  gap:28px;
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.nav-links a{
+  text-decoration:none;
+  font-size:14px;
+  font-weight:500;
+  color:var(--ink-soft);
+  padding:6px 0;
+  border-bottom:2px solid transparent;
+}
+.nav-links a:hover,
+.nav-links a.active{
+  color:var(--ink);
+  border-bottom-color:var(--amber);
+}
+
+/* ---------- Hero ---------- */
+.hero{
+  padding:72px 0 56px;
+}
+.hero .container{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  max-width:640px;
+}
+.hero .eyebrow{
+  font-size:14px;
+  color:var(--sage);
+  font-weight:600;
+  margin:0 0 14px;
+}
+.hero h1{
+  font-family:'Source Serif 4',serif;
+  font-weight:600;
+  font-size:44px;
+  line-height:1.15;
+  letter-spacing:-0.01em;
+  margin:0 0 18px;
+}
+.hero p{
+  font-size:16px;
+  line-height:1.6;
+  color:var(--ink-soft);
+  margin:0 0 32px;
+}
+.hero-actions{
+  display:flex;
+  gap:14px;
+}
+.btn{
+  display:inline-block;
+  text-decoration:none;
+  font-family:'Inter',sans-serif;
+  font-weight:600;
+  font-size:15px;
+  padding:13px 24px;
+  border-radius:10px;
+  border:1px solid transparent;
+  cursor:pointer;
+}
+.btn-primary{
+  background:var(--ink);
+  color:#fff;
+}
+.btn-primary:hover{ background:#101c33; }
+.btn-secondary{
+  background:transparent;
+  color:var(--ink);
+  border-color:var(--line);
+}
+.btn-secondary:hover{ border-color:var(--ink); }
+
+/* ---------- Feature cards ---------- */
+.features{
+  padding:8px 0 72px;
+}
+.features .section-title{
+  font-family:'Source Serif 4',serif;
+  font-size:24px;
+  font-weight:600;
+  margin:0 0 6px;
+}
+.features .section-sub{
+  color:var(--ink-soft);
+  font-size:15px;
+  margin:0 0 32px;
+}
+.feature-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+.feature-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:26px 22px;
+  text-decoration:none;
+  color:var(--ink);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.feature-card:hover{ border-color:var(--amber); }
+.feature-card .icon{
+  width:38px;
+  height:38px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+  margin-bottom:6px;
+}
+.feature-card.vocab .icon{ background:var(--sage-soft); }
+.feature-card.listen .icon{ background:#E3EAF7; }
+.feature-card.speak .icon{ background:var(--coral-soft); }
+.feature-card h3{
+  font-size:17px;
+  margin:0;
+}
+.feature-card p{
+  font-size:14px;
+  color:var(--ink-soft);
+  line-height:1.5;
+  margin:0;
+}
+.feature-card .status{
+  font-size:12px;
+  font-weight:600;
+  margin-top:4px;
+}
+.status.ready{ color:var(--sage); }
+.status.soon{ color:var(--ink-soft); }
+
+/* ---------- Footer ---------- */
+.site-footer{
+  border-top:1px solid var(--line);
+  padding:24px 0;
+}
+.site-footer .container{
+  font-size:13px;
+  color:var(--ink-soft);
+}
+
+/* ---------- Placeholder page (Nghe / Nói) ---------- */
+.placeholder-wrap{
+  padding:80px 0;
+  text-align:center;
+}
+.placeholder-wrap .badge{
+  display:inline-block;
+  background:var(--sage-soft);
+  color:var(--sage);
+  font-size:13px;
+  font-weight:600;
+  padding:6px 14px;
+  border-radius:99px;
+  margin-bottom:18px;
+}
+.placeholder-wrap h1{
+  font-family:'Source Serif 4',serif;
+  font-size:30px;
+  margin:0 0 12px;
+}
+.placeholder-wrap p{
+  color:var(--ink-soft);
+  max-width:440px;
+  margin:0 auto 28px;
+  line-height:1.6;
+}
+
+@media (max-width:720px){
+  .feature-grid{ grid-template-columns:1fr; }
+  .hero h1{ font-size:32px; }
+  .nav-links{ display:none; }
+}
+
+/* ---------- Flashcard page (trang từ vựng) ---------- */
+.page-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:48px 20px 80px;
+}
+.page-wrap header.page-head{
+  text-align:center;
+  margin-bottom:32px;
+}
+.page-head .eyebrow{
+  font-size:14px;
+  color:var(--ink-soft);
+  margin:0 0 6px;
+}
+.page-head h1{
+  font-family:'Source Serif 4',serif;
+  font-weight:600;
+  font-size:32px;
+  margin:0;
+  letter-spacing:-0.01em;
+}
+.progress-wrap{ width:100%; max-width:420px; margin-bottom:28px; }
+.progress-track{ height:6px; background:var(--line); border-radius:99px; overflow:hidden; }
+.progress-fill{ height:100%; background:var(--amber); border-radius:99px; transition:width .35s ease; width:0%; }
+.progress-label{ display:flex; justify-content:space-between; font-size:13px; color:var(--ink-soft); margin-top:8px; }
+
+.card{
+  width:100%; max-width:420px;
+  background:var(--card);
+  border-radius:var(--radius);
+  border:1px solid var(--line);
+  box-shadow:0 1px 2px rgba(27,42,74,.04), 0 8px 24px rgba(27,42,74,.06);
+  padding:40px 32px 32px;
+  text-align:center;
+  position:relative;
+}
+.card-index{ position:absolute; top:18px; left:20px; font-size:13px; color:var(--ink-soft); }
+.word-en{ font-family:'Source Serif 4',serif; font-weight:600; font-size:38px; margin:20px 0 4px; letter-spacing:-0.01em; }
+.word-type{ font-size:13px; color:var(--ink-soft); margin-bottom:24px; font-style:italic; }
+
+.sound-btn{
+  display:inline-flex; align-items:center; gap:6px;
+  background:none; border:1px solid var(--line); border-radius:99px;
+  padding:8px 16px; font-size:14px; color:var(--ink); cursor:pointer;
+  margin-bottom:28px; font-family:'Inter',sans-serif;
+}
+.sound-btn:hover{ border-color:var(--amber); color:var(--amber-deep); }
+
+.meaning-box{
+  text-align:left; background:var(--paper); border-radius:10px; padding:16px 18px;
+  margin-bottom:24px; max-height:0; overflow:hidden; opacity:0;
+  transition:max-height .3s ease, opacity .3s ease;
+}
+.meaning-box.show{ max-height:200px; opacity:1; }
+.meaning-box .vi{ font-weight:600; font-size:18px; margin:0 0 6px; color:var(--sage); }
+.meaning-box .example{ font-size:14px; color:var(--ink-soft); margin:0; line-height:1.5; }
+
+.reveal-btn{
+  width:100%; background:var(--ink); color:#fff; border:none; border-radius:10px;
+  padding:14px; font-size:15px; font-weight:600; cursor:pointer; margin-bottom:16px;
+  font-family:'Inter',sans-serif;
+}
+.reveal-btn:hover{ background:#101c33; }
+.reveal-btn:disabled{ background:var(--line); color:var(--ink-soft); cursor:default; }
+
+.judge-row{ display:flex; gap:12px; }
+.judge-btn{
+  flex:1; border:none; border-radius:10px; padding:14px; font-size:15px; font-weight:600;
+  cursor:pointer; font-family:'Inter',sans-serif; transition:transform .1s ease;
+}
+.judge-btn:disabled{ opacity:.4; cursor:default; }
+.judge-btn:active:not(:disabled){ transform:scale(0.97); }
+.btn-forgot{ background:var(--coral-soft); color:var(--coral); }
+.btn-forgot:hover:not(:disabled){ background:#F2D6D1; }
+.btn-known{ background:var(--sage-soft); color:var(--sage); }
+.btn-known:hover:not(:disabled){ background:#D5E7DB; }
+
+.summary{ text-align:center; }
+.summary h2{ font-family:'Source Serif 4',serif; font-size:28px; margin:0 0 8px; }
+.summary p{ color:var(--ink-soft); margin:0 0 24px; }
+.stat-row{ display:flex; gap:16px; justify-content:center; margin-bottom:28px; }
+.stat{ padding:16px 24px; border-radius:10px; }
+.stat.known{ background:var(--sage-soft); }
+.stat.forgot{ background:var(--coral-soft); }
+.stat .num{ font-size:28px; font-weight:700; font-family:'Source Serif 4',serif; }
+.stat.known .num{ color:var(--sage); }
+.stat.forgot .num{ color:var(--coral); }
+.stat .label{ font-size:13px; color:var(--ink-soft); margin-top:2px; }
+.restart-btn{
+  background:var(--amber); color:#fff; border:none; border-radius:10px;
+  padding:14px 28px; font-size:15px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif;
+}
+.restart-btn:hover{ background:var(--amber-deep); }
+.hidden{ display:none; }
+
+/* ================= AUTH (Đăng nhập / Đăng ký) ================= */
+.auth-wrap{
+  min-height:calc(100vh - 65px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:40px 20px;
+}
+.auth-card{
+  width:100%;
+  max-width:400px;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:36px 32px;
+  box-shadow:0 8px 24px rgba(22,35,63,.06);
+}
+.auth-card h1{
+  font-family:'Source Serif 4',serif;
+  font-size:26px;
+  margin:0 0 6px;
+  text-align:center;
+}
+.auth-card .auth-sub{
+  text-align:center;
+  color:var(--ink-soft);
+  font-size:14px;
+  margin:0 0 26px;
+}
+.field{ margin-bottom:16px; }
+.field label{
+  display:block;
+  font-size:13px;
+  font-weight:600;
+  margin-bottom:6px;
+  color:var(--ink);
+}
+.field input{
+  width:100%;
+  padding:12px 14px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  font-size:14px;
+  font-family:'Inter',sans-serif;
+  background:var(--blue-softer);
+}
+.field input:focus{
+  outline:none;
+  border-color:var(--blue);
+  background:#fff;
+}
+.auth-submit{
+  width:100%;
+  background:var(--blue);
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  padding:13px;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  font-family:'Inter',sans-serif;
+  margin-top:6px;
+}
+.auth-submit:hover{ background:var(--blue-deep); }
+.auth-switch{
+  text-align:center;
+  font-size:13.5px;
+  color:var(--ink-soft);
+  margin-top:18px;
+}
+.auth-switch a{ color:var(--blue); font-weight:600; text-decoration:none; }
+.auth-switch a:hover{ text-decoration:underline; }
+.auth-banner{
+  display:none;
+  font-size:13.5px;
+  padding:10px 14px;
+  border-radius:10px;
+  margin-bottom:18px;
+  line-height:1.5;
+}
+.auth-banner.show{ display:block; }
+.auth-banner.warn{ background:var(--coral-soft); color:var(--coral); }
+.auth-banner.ok{ background:var(--sage-soft); color:var(--sage); }
+.nav-auth{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.nav-auth .btn{ padding:9px 18px; font-size:13.5px; }
+.nav-user{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:14px;
+  font-weight:600;
+}
+.nav-user .avatar{
+  width:32px; height:32px; border-radius:50%;
+  background:var(--blue-soft); color:var(--blue-deep);
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:700;
+}
+.nav-user .logout-link{
+  font-size:13px; font-weight:500; color:var(--ink-soft);
+  text-decoration:none; border-bottom:1px dashed var(--line);
+}
+
+/* ================= Level selector (A1 - C2) ================= */
+.level-select-wrap{ padding:44px 0 12px; }
+.level-select-wrap .container{ max-width:1040px; }
+.level-select-wrap .page-title{
+  font-family:'Source Serif 4',serif;
+  font-size:28px;
+  margin:0 0 4px;
+}
+.level-select-wrap .page-sub{
+  color:var(--ink-soft);
+  font-size:14.5px;
+  margin:0 0 24px;
+}
+.level-row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:36px;
+}
+.level-pill{
+  border:1.5px solid var(--line);
+  background:var(--card);
+  border-radius:12px;
+  padding:12px 18px;
+  cursor:pointer;
+  text-align:left;
+  font-family:'Inter',sans-serif;
+  min-width:96px;
+}
+.level-pill .code{
+  font-family:'Source Serif 4',serif;
+  font-weight:600;
+  font-size:18px;
+  color:var(--ink);
+}
+.level-pill .name{
+  display:block;
+  font-size:11.5px;
+  color:var(--ink-soft);
+  margin-top:2px;
+}
+.level-pill.active{
+  border-color:var(--blue);
+  background:var(--blue-soft);
+}
+.level-pill.active .code{ color:var(--blue-deep); }
+.level-pill:not(.active):hover{ border-color:var(--ink-soft); }
+
+/* ================= Topic grid (chủ đề học) ================= */
+.topic-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+  padding-bottom:56px;
+}
+.topic-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:22px 16px;
+  text-align:center;
+  text-decoration:none;
+  color:var(--ink);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+}
+.topic-card .emoji{
+  width:52px; height:52px;
+  border-radius:50%;
+  background:var(--blue-soft);
+  display:flex; align-items:center; justify-content:center;
+  font-size:24px;
+  margin-bottom:4px;
+}
+.topic-card h3{ margin:0; font-size:15px; }
+.topic-card .meta{ font-size:12px; color:var(--ink-soft); }
+.topic-card.unlocked:hover{ border-color:var(--blue); }
+.topic-card.locked{
+  opacity:.6;
+  cursor:default;
+  pointer-events:none;
+}
+.topic-card.locked .emoji{ background:var(--lock-soft); color:var(--lock); }
+.topic-card .lock-tag{
+  font-size:11px;
+  font-weight:600;
+  color:var(--lock);
+  background:var(--lock-soft);
+  padding:3px 9px;
+  border-radius:99px;
+}
+
+@media (max-width:760px){
+  .topic-grid{ grid-template-columns:repeat(2,1fr); }
+}
+
+/* ================= Fill-in-the-blank (viết từ) ================= */
+.fill-blank-box{
+  text-align:left;
+}
+.fill-blank-box .instruction{
+  font-size:13px;
+  color:var(--ink-soft);
+  margin:0 0 18px;
+}
+.fill-sentence{
+  font-size:17px;
+  line-height:1.7;
+  margin-bottom:18px;
+}
+.fill-sentence input{
+  width:120px;
+  border:none;
+  border-bottom:2px solid var(--blue);
+  background:var(--blue-softer);
+  border-radius:6px 6px 0 0;
+  padding:4px 8px;
+  font-size:16px;
+  font-family:'Inter',sans-serif;
+  text-align:center;
+}
+.fill-sentence input:focus{ outline:none; background:var(--blue-soft); }
+.fill-sentence input.correct{ border-color:var(--sage); background:var(--sage-soft); }
+.fill-sentence input.wrong{ border-color:var(--coral); background:var(--coral-soft); }
+.fill-hint{
+  font-size:13px;
+  color:var(--ink-soft);
+  margin-bottom:20px;
+}
+.check-btn{
+  width:100%;
+  background:var(--blue);
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  padding:14px;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  font-family:'Inter',sans-serif;
+}
+.check-btn:hover{ background:var(--blue-deep); }
+.fill-feedback{
+  margin-top:14px;
+  font-size:14px;
+  font-weight:600;
+  text-align:center;
+}
+.fill-feedback.ok{ color:var(--sage); }
+.fill-feedback.no{ color:var(--coral); }
+
+/* ================= Nghe: hội thoại điền từ ================= */
+.dialogue-card{
+  width:100%;
+  max-width:560px;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:30px 28px;
+  box-shadow:0 1px 2px rgba(22,35,63,.04), 0 8px 24px rgba(22,35,63,.06);
+}
+.dialogue-scene{
+  font-size:13px;
+  color:var(--ink-soft);
+  background:var(--blue-softer);
+  border-radius:10px;
+  padding:10px 14px;
+  margin-bottom:20px;
+}
+.dialogue-line{
+  display:flex;
+  gap:12px;
+  margin-bottom:18px;
+  align-items:flex-start;
+}
+.dialogue-line .speaker{
+  width:34px; height:34px; border-radius:50%;
+  background:var(--blue-soft); color:var(--blue-deep);
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:700; flex-shrink:0;
+}
+.dialogue-line .bubble{
+  background:var(--blue-softer);
+  border-radius:10px;
+  padding:12px 14px;
+  font-size:14.5px;
+  line-height:1.6;
+  flex:1;
+}
+.dialogue-line .play-line{
+  border:none; background:none; cursor:pointer;
+  font-size:15px; margin-right:6px;
+}
+.dialogue-line input{
+  border:none;
+  border-bottom:2px solid var(--blue);
+  background:#fff;
+  border-radius:4px 4px 0 0;
+  padding:2px 6px;
+  font-size:14.5px;
+  width:100px;
+  text-align:center;
+  font-family:'Inter',sans-serif;
+}
+.dialogue-line input.correct{ border-color:var(--sage); background:var(--sage-soft); }
+.dialogue-line input.wrong{ border-color:var(--coral); background:var(--coral-soft); }
+
+/* ================= Nói: hội thoại luyện nói ================= */
+.speak-card{
+  width:100%;
+  max-width:560px;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:30px 28px 26px;
+  box-shadow:0 1px 2px rgba(22,35,63,.04), 0 8px 24px rgba(22,35,63,.06);
+}
+.speak-scene{
+  font-size:13px;
+  color:var(--ink-soft);
+  background:var(--blue-softer);
+  border-radius:10px;
+  padding:10px 14px;
+  margin-bottom:20px;
+}
+.chat-log{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  margin-bottom:22px;
+  min-height:60px;
+}
+.chat-bubble{
+  max-width:78%;
+  padding:11px 14px;
+  border-radius:14px;
+  font-size:14.5px;
+  line-height:1.55;
+}
+.chat-bubble.ai{
+  align-self:flex-start;
+  background:var(--blue-softer);
+  border-bottom-left-radius:4px;
+}
+.chat-bubble.me{
+  align-self:flex-end;
+  background:var(--blue);
+  color:#fff;
+  border-bottom-right-radius:4px;
+}
+.chat-bubble .play-line{
+  border:none; background:none; cursor:pointer; font-size:13px; margin-right:6px;
+}
+.speak-controls{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.mic-btn{
+  flex-shrink:0;
+  width:52px; height:52px;
+  border-radius:50%;
+  border:none;
+  background:var(--blue);
+  color:#fff;
+  font-size:20px;
+  cursor:pointer;
+}
+.mic-btn.recording{ background:var(--coral); }
+.mic-btn:hover{ background:var(--blue-deep); }
+.speak-hint-text{
+  font-size:13px;
+  color:var(--ink-soft);
+  flex:1;
+}
+.next-turn-btn{
+  width:100%;
+  margin-top:16px;
+  background:var(--ink);
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  padding:13px;
+  font-size:14.5px;
+  font-weight:600;
+  cursor:pointer;
+  font-family:'Inter',sans-serif;
+}
+.next-turn-btn:hover{ background:#0f1a30; }
+.next-turn-btn:disabled{ background:var(--line); color:var(--ink-soft); cursor:default; }
