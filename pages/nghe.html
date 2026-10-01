@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nghe — Học Từ Đầu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+
+<!--
+  Chỉ còn CSS riêng cho phần TEST LISTENING ở đây (audio player, câu hỏi,
+  kết quả) — phần header / nav / chọn trình độ giờ dùng chung style.css
+  với các trang tu-vung.html, nghe.html, noi.html, viet.html để đồng bộ
+  giao diện toàn site (trước đây trang này tự định nghĩa lại header, màu
+  nền, font riêng nên nhìn khác hẳn các trang còn lại).
+-->
+<style>
+  /* ================= TEST LISTENING (riêng trang này) ================= */
+
+  .test-section {
+      padding: 15px 0 80px;
+  }
+
+  .test-card {
+      background: #fff;
+      border: 1px solid #e1e7ef;
+      border-radius: 24px;
+      padding: 35px;
+      box-shadow: 0 12px 35px rgba(25,45,75,.06);
+  }
+
+  .test-heading {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 30px;
+  }
+
+  .test-heading .icon {
+      font-size: 45px;
+      margin-bottom: 8px;
+  }
+
+  .test-heading h2 {
+      margin: 0 0 10px;
+      font-size: 30px;
+  }
+
+  .test-heading p {
+      margin: 0;
+      color: #667085;
+      line-height: 1.6;
+  }
+
+  /* ================= AUDIO ================= */
+
+  .audio-box {
+      max-width: 700px;
+      margin: 0 auto 30px;
+      background: #f5f8fc;
+      border-radius: 20px;
+      padding: 25px;
+      text-align: center;
+  }
+
+  .audio-title {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 20px;
+  }
+
+  .audio-main-btn {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: none;
+      background: #5ff981;
+      color: white;
+      font-size: 27px;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(22,119,255,.25);
+  }
+
+  .audio-main-btn:hover {
+      transform: scale(1.05);
+  }
+
+  .audio-controls {
+      margin-top: 18px;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+  }
+
+  .speed-btn {
+      border: 1px solid #d8e0ea;
+      background: white;
+      border-radius: 8px;
+      padding: 7px 11px;
+      cursor: pointer;
+      font-size: 12px;
+  }
+
+  .speed-btn.active {
+      background: #5bc975;
+      color: white;
+      border-color: #5ad262;
+  }
+
+  .audio-note {
+      margin-top: 15px;
+      color: #667085;
+      font-size: 13px;
+  }
+
+  /* ================= QUESTIONS ================= */
+
+  .questions {
+      max-width: 800px;
+      margin: auto;
+  }
+
+  .question {
+      padding: 22px;
+      background: #f8fafc;
+      border-radius: 16px;
+      margin-bottom: 15px;
+  }
+
+  .question-number {
+      color: #64dc56;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 8px;
+  }
+
+  .question-text {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 13px;
+      line-height: 1.5;
+  }
+
+  .option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: white;
+      border: 1px solid #dce3ec;
+      border-radius: 10px;
+      padding: 11px;
+      margin-top: 7px;
+      cursor: pointer;
+  }
+
+  .option:hover {
+      border-color: #16ff68;
+  }
+
+  .option input {
+      accent-color: #16ff22;
+  }
+
+  .submit-btn {
+      display: block;
+      margin: 25px auto 0;
+      border: none;
+      background: #42f06b;
+      color: white;
+      padding: 13px 25px;
+      border-radius: 11px;
+      font-weight: 800;
+      cursor: pointer;
+  }
+
+  .submit-btn:hover {
+      background: #49cd71;
+  }
+
+  /* ================= RESULT ================= */
+
+  .result {
+      display: none;
+      max-width: 700px;
+      margin: 30px auto 0;
+      background: #f7fbff;
+      border: 1px solid #cfe3ff;
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+  }
+
+  .result.show {
+      display: block;
+  }
+
+  .score {
+      font-size: 55px;
+      font-weight: 800;
+      color: #5dc469;
+  }
+
+  .result h3 {
+      margin: 5px 0 10px;
+      font-size: 24px;
+  }
+
+  .result p {
+      color: #667085;
+      line-height: 1.6;
+  }
+
+  .result-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+  }
+
+  .result-btn {
+      text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 14px;
+  }
+
+  .result-btn.primary {
+      background: #69ce53;
+      color: white;
+  }
+
+  .result-btn.secondary {
+      background: #eaf1f8;
+      color: #344054;
+  }
+
+  @media (max-width: 800px) {
+      .test-card {
+          padding: 22px;
+      }
+  }
+
+  @media (max-width: 500px) {
+      .test-heading h2 {
+          font-size: 25px;
+      }
+
+      .audio-box {
+          padding: 20px;
+      }
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="logo"><span class="logo-icon">🌱</span> Học Từ Đầu</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html">🏠 Trang chủ</a></li>
+          <li><a href="tu-vung.html">📇 Từ vựng</a></li>
+          <li><a href="nghe.html" class="active">🎧 Nghe</a></li>
+          <li><a href="noi.html">🗣️ Nói</a></li>
+          <li><a href="doc.html">📖 Đọc</a></li>
+          <li><a href="viet.html">✍️ Viết</a></li>
+        </ul>
+      </nav>
+      <div class="header-right">
+        <button class="theme-toggle" id="themeToggle"><span class="theme-icon">🌙</span></button>
+        <div id="navAuthSlot"></div>
+      </div>
+    </div>
+  </header>
+
+  <section class="level-select-wrap">
+    <div class="container">
+      <h2 class="page-title">Luyện nghe theo trình độ</h2>
+      <p class="page-sub">Chọn trình độ của bạn và làm một bài test Listening ngắn trước khi bắt đầu lộ trình học.</p>
+      <div class="level-row" id="levelRow">
+        <button class="level-pill level-btn active" data-level="A1"><span class="code level-code">A1</span><span class="name level-name">Mới bắt đầu</span></button>
+        <button class="level-pill level-btn" data-level="A2"><span class="code level-code">A2</span><span class="name level-name">Sơ cấp</span></button>
+        <button class="level-pill level-btn" data-level="B1"><span class="code level-code">B1</span><span class="name level-name">Trung cấp</span></button>
+        <button class="level-pill level-btn" data-level="B2"><span class="code level-code">B2</span><span class="name level-name">Trên trung cấp</span></button>
+        <button class="level-pill level-btn" data-level="C1"><span class="code level-code">C1</span><span class="name level-name">Cao cấp </span></button>
+        <button class="level-pill level-btn" data-level="C2"><span class="code level-code">C2</span><span class="name level-name">Thành thạo</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="test-section container">
+
+    <div class="test-card">
+
+      <div class="test-heading">
+        <div class="icon">🎧</div>
+        <h2>Test thử Listening</h2>
+        <p>Hãy nghe đoạn hội thoại và trả lời các câu hỏi bên dưới. Bạn không cần đăng nhập để làm bài test.</p>
+      </div>
+
+      <!-- AUDIO -->
+      <div class="audio-box">
+        <div class="audio-title" id="testTitle">A Day at a Café</div>
+
+        <button class="audio-main-btn" id="testPlayBtn">▶</button>
+
+        <div class="audio-controls">
+          <button class="speed-btn" data-speed="0.75">0.75x</button>
+          <button class="speed-btn active" data-speed="1">1x</button>
+          <button class="speed-btn" data-speed="1.25">1.25x</button>
+        </div>
+
+        <div class="audio-note">💡 Bạn có thể nghe lại nhiều lần.</div>
+      </div>
+
+      <!-- QUESTIONS -->
+      <form id="testForm">
+        <div class="questions" id="questions"></div>
+        <button type="submit" class="submit-btn">Nộp bài test</button>
+      </form>
+
+      <!-- RESULT -->
+      <div class="result" id="testResult">
+        <div class="score" id="score">0/100</div>
+        <h3 id="resultTitle">Kết quả</h3>
+        <p id="resultDescription"></p>
+
+        <div class="result-buttons">
+          <a href="nghe-bai-hoc.html?lesson=a1-lesson-1" class="result-btn primary" id="startLearningBtn">🎧 Bắt đầu học</a>
+          <button type="button" class="result-btn secondary" id="retryBtn">🔄 Làm lại</button>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container"></div>
+  </footer>
+
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/nghe-bai-hoc.js"></script>
+  <script>
+    // Dark/Light mode
+    const _st = localStorage.getItem('htd_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', _st);
+    const _ti = document.querySelector('.theme-icon');
+    if(_ti) _ti.textContent = _st === 'dark' ? '☀️' : '🌙';
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const c = document.documentElement.getAttribute('data-theme');
+      const n = c === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', n);
+      localStorage.setItem('htd_theme', n);
+      document.querySelector('.theme-icon').textContent = n === 'dark' ? '☀️' : '🌙';
+    });
+
+    if (typeof renderNavAuth === 'function') {
+      renderNavAuth('../');
+    }
+  </script>
+</body>
+</html>

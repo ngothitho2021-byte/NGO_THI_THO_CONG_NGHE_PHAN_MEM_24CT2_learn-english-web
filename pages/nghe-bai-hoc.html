@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Học Listening - Học Từ Đầu</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        rel="stylesheet"
+        href="../assets/css/style.css"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Header/logo/nav giờ dùng chung style.css với các trang bai-hoc
+           khác (tu-vung-bai-hoc.html, noi-bai-hoc.html) để đồng bộ giao
+           diện — không override lại body/.container/.logo ở đây nữa. */
+
+        /* TOP */
+
+        .lesson-top {
+            background: white;
+            padding: 40px 0;
+            border-bottom: 1px solid #e5eaf0;
+        }
+
+        .lesson-label {
+            color: #1677ff;
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .lesson-top h1 {
+            margin: 0 0 10px;
+            font-size: 38px;
+        }
+
+        .lesson-description {
+            margin: 0;
+            color: #667085;
+            line-height: 1.7;
+            max-width: 700px;
+        }
+
+        .lesson-meta {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+        }
+
+        .pill {
+            background: #f1f5f9;
+            padding: 7px 11px;
+            border-radius: 8px;
+            color: #526071;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* MAIN */
+
+        .main {
+            padding: 35px 0 80px;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 25px;
+            align-items: start;
+        }
+
+        /* AUDIO */
+
+        .audio-card {
+            background: white;
+            border: 1px solid #e1e7ef;
+            border-radius: 22px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+
+        .audio-header {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        .audio-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 17px;
+            background: #eaf4ff;
+            display: grid;
+            place-items: center;
+            font-size: 28px;
+        }
+
+        .audio-header h2 {
+            margin: 0 0 5px;
+            font-size: 22px;
+        }
+
+        .audio-header p {
+            margin: 0;
+            color: #667085;
+            font-size: 13px;
+        }
+
+        .audio-player {
+            width: 100%;
+        }
+
+        .audio-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .audio-btn {
+            border: 1px solid #d8e0ea;
+            background: white;
+            padding: 9px 13px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .audio-btn:hover {
+            border-color: #1677ff;
+            color: #1677ff;
+        }
+
+        .speed {
+            background: #f1f5f9;
+            border: 0;
+            padding: 8px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .speed.active {
+            background: #1677ff;
+            color: white;
+        }
+
+        /* MODES */
+
+        .modes {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .mode {
+            border: 1px solid #dce3ec;
+            background: white;
+            border-radius: 13px;
+            padding: 14px;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .mode strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .mode span {
+            color: #667085;
+            font-size: 12px;
+        }
+
+        .mode.active {
+            background: #eaf4ff;
+            border-color: #1677ff;
+        }
+
+        /* TABS */
+
+        .tabs {
+            display: flex;
+            gap: 7px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        .tab {
+            white-space: nowrap;
+            border: 1px solid #dce3ec;
+            background: white;
+            border-radius: 9px;
+            padding: 10px 13px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .tab.active {
+            background: #1677ff;
+            border-color: #1677ff;
+            color: white;
+        }
+
+        /* CONTENT */
+
+        .content-section {
+            display: none;
+            background: white;
+            border: 1px solid #e1e7ef;
+            border-radius: 20px;
+            padding: 28px;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .content-section h2 {
+            margin: 0 0 8px;
+        }
+
+        .content-section > p {
+            color: #667085;
+            line-height: 1.6;
+        }
+
+        /* QUIZ */
+
+        .question {
+            background: #f8fafc;
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 12px;
+        }
+
+        .q-number {
+            color: #1677ff;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .q-text {
+            margin: 8px 0;
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
+        .option {
+            display: flex;
+            gap: 9px;
+            background: white;
+            border: 1px solid #dce3ec;
+            padding: 10px;
+            border-radius: 9px;
+            margin-top: 7px;
+            cursor: pointer;
+        }
+
+        .submit {
+            border: none;
+            background: #1677ff;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 800;
+        }
+
+        .quiz-result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            background: #eef9f2;
+            color: #176b35;
+            display: none;
+        }
+
+        .quiz-result.show {
+            display: block;
+        }
+
+        /* DICTATION */
+
+        textarea {
+            width: 100%;
+            min-height: 140px;
+            padding: 13px;
+            border: 1px solid #d6e0ea;
+            border-radius: 10px;
+            resize: vertical;
+            font-family: inherit;
+            font-size: 15px;
+            margin: 15px 0;
+        }
+
+        textarea:focus {
+            outline: 2px solid #c8e0ff;
+            border-color: #1677ff;
+        }
+
+        .dictation-result {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 12px;
+            display: none;
+            line-height: 1.6;
+        }
+
+        .dictation-result.show {
+            display: block;
+        }
+
+        /* TRANSCRIPT */
+
+        .transcript {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 18px;
+            line-height: 1.8;
+        }
+
+        .line {
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .line:hover {
+            background: #eaf4ff;
+        }
+
+        .line-number {
+            color: #1677ff;
+            font-weight: 800;
+        }
+
+        /* VOCABULARY */
+
+        .vocab {
+            display: grid;
+            gap: 10px;
+        }
+
+        .word {
+            border: 1px solid #e1e7ef;
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .word strong {
+            font-size: 17px;
+        }
+
+        .meaning {
+            color: #667085;
+            margin-top: 5px;
+        }
+
+        .example {
+            color: #526071;
+            font-size: 13px;
+            margin-top: 7px;
+        }
+
+        /* RESULT */
+
+        .final-result {
+            text-align: center;
+        }
+
+        .final-score {
+            font-size: 60px;
+            color: #1677ff;
+            font-weight: 800;
+        }
+
+        .final-result p {
+            max-width: 600px;
+            margin: 10px auto;
+        }
+
+        .complete {
+            margin-top: 20px;
+            border: none;
+            background: #1677ff;
+            color: white;
+            padding: 13px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 800;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar-card {
+            background: white;
+            border: 1px solid #e1e7ef;
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .sidebar-card h3 {
+            margin: 0 0 15px;
+        }
+
+        .sidebar-step {
+            padding: 10px 0;
+            border-bottom: 1px solid #edf1f5;
+            color: #667085;
+            font-size: 13px;
+        }
+
+        .sidebar-step:last-child {
+            border-bottom: none;
+        }
+
+        .tip {
+            color: #667085;
+            line-height: 1.6;
+            font-size: 13px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 850px) {
+
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .modes {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .lesson-top h1 {
+                font-size: 30px;
+            }
+
+            .audio-card,
+            .content-section {
+                padding: 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header class="site-header">
+  <div class="container">
+    <a href="../index.html" class="logo">Học Từ Đầu</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">🏠 Trang chủ</a></li>
+      <li><a href="tu-vung.html">📇 Từ vựng</a></li>
+      <li><a href="nghe.html" class="active">🎧 Nghe</a></li>
+      <li><a href="noi.html">🗣️ Nói</a></li>
+      <li><a href="viet.html">✍️ Viết</a></li>
+    </ul>
+    <div id="navAuthSlot"></div>
+  </div>
+</header>
+
+
+<!-- LESSON INFORMATION -->
+
+<section class="lesson-top">
+
+    <div class="container">
+
+        <div
+            class="lesson-label"
+            id="lessonLevel"
+        >
+            A1 • LESSON 1
+        </div>
+
+        <h1 id="lessonTitle">
+            Hello & Introductions
+        </h1>
+
+        <p
+            class="lesson-description"
+            id="lessonDescription"
+        >
+            Luyện nghe cách chào hỏi và giới thiệu bản thân.
+        </p>
+
+
+        <div class="lesson-meta">
+
+            <span
+                class="pill"
+                id="lessonDuration"
+            >
+                ⏱ 1:10
+            </span>
+
+            <span
+                class="pill"
+                id="lessonDifficulty"
+            >
+                Dễ
+            </span>
+
+            <span class="pill">
+                🎧 Listening
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<main class="main">
+
+    <div class="container">
+
+        <div class="layout">
+
+
+            <!-- LEFT -->
+
+            <div>
+
+
+                <!-- AUDIO -->
+
+                <section class="audio-card">
+
+                    <div class="audio-header">
+
+                        <div class="audio-icon">
+                            🎧
+                        </div>
+
+                        <div>
+
+                            <h2>
+                                Listen
+                            </h2>
+
+                            <p>
+                                Nghe đoạn audio trước khi làm bài.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <audio
+                        id="audioPlayer"
+                        class="audio-player"
+                        controls
+                    ></audio>
+
+
+                    <div class="audio-buttons">
+
+                        <button
+                            class="audio-btn"
+                            id="back10"
+                        >
+                            ↶ 10 giây
+                        </button>
+
+                        <button
+                            class="audio-btn"
+                            id="play"
+                        >
+                            ▶ Phát
+                        </button>
+
+                        <button
+                            class="audio-btn"
+                            id="forward10"
+                        >
+                            10 giây ↷
+                        </button>
+
+
+                        <button
+                            class="speed active"
+                            data-speed="1"
+                        >
+                            1x
+                        </button>
+
+                        <button
+                            class="speed"
+                            data-speed="0.75"
+                        >
+                            0.75x
+                        </button>
+
+                        <button
+                            class="speed"
+                            data-speed="1.25"
+                        >
+                            1.25x
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- MODE -->
+
+                <div class="modes">
+
+                    <button
+                        class="mode active"
+                        data-mode="easy"
+                    >
+
+                        <strong>
+                            🌱 Easy
+                        </strong>
+
+                        <span>
+                            Có transcript
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="mode"
+                        data-mode="normal"
+                    >
+
+                        <strong>
+                            🎧 Normal
+                        </strong>
+
+                        <span>
+                            Nghe tự nhiên
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="mode"
+                        data-mode="challenge"
+                    >
+
+                        <strong>
+                            🔥 Challenge
+                        </strong>
+
+                        <span>
+                            Không transcript
+                        </span>
+
+                    </button>
+
+                </div>
+
+
+                <!-- TABS -->
+
+                <div class="tabs">
+
+                    <button
+                        class="tab active"
+                        data-section="listen"
+                    >
+                        🎧 Listen
+                    </button>
+
+                    <button
+                        class="tab"
+                        data-section="quiz"
+                    >
+                        📝 Quiz
+                    </button>
+
+                    <button
+                        class="tab"
+                        data-section="dictation"
+                    >
+                        ✍️ Dictation
+                    </button>
+
+                    <button
+                        class="tab"
+                        data-section="transcript"
+                    >
+                        📄 Transcript
+                    </button>
+
+                    <button
+                        class="tab"
+                        data-section="vocabulary"
+                    >
+                        📚 Vocabulary
+                    </button>
+
+                    <button
+                        class="tab"
+                        data-section="result"
+                    >
+                        📊 Result
+                    </button>
+
+                </div>
+
+
+                <!-- LISTEN -->
+
+                <section
+                    class="content-section active"
+                    id="section-listen"
+                >
+
+                    <h2>
+                        🎧 Listen
+                    </h2>
+
+                    <p>
+                        Hãy nghe đoạn hội thoại ít nhất
+                        hai lần. Lần đầu tập trung vào ý chính,
+                        lần thứ hai chú ý các từ khóa.
+                    </p>
+
+                    <button
+                        class="submit"
+                        id="goQuiz"
+                    >
+                        Đã nghe xong → Làm Quiz
+                    </button>
+
+                </section>
+
+
+                <!-- QUIZ -->
+
+                <section
+                    class="content-section"
+                    id="section-quiz"
+                >
+
+                    <h2>
+                        📝 Comprehension Quiz
+                    </h2>
+
+                    <p>
+                        Kiểm tra xem bạn có hiểu nội dung
+                        đoạn nghe hay không.
+                    </p>
+
+
+                    <form id="quizForm">
+
+                        <div id="quizContainer"></div>
+
+                        <button
+                            class="submit"
+                            type="submit"
+                        >
+                            Kiểm tra đáp án
+                        </button>
+
+                    </form>
+
+
+                    <div
+                        class="quiz-result"
+                        id="quizResult"
+                    ></div>
+
+                </section>
+
+
+                <!-- DICTATION -->
+
+                <section
+                    class="content-section"
+                    id="section-dictation"
+                >
+
+                    <h2>
+                        ✍️ Dictation
+                    </h2>
+
+                    <p>
+                        Nghe và viết lại câu bạn nghe được.
+                    </p>
+
+
+                    <textarea
+                        id="dictationInput"
+                        placeholder="Type what you hear..."
+                    ></textarea>
+
+
+                    <button
+                        class="submit"
+                        id="checkDictation"
+                    >
+                        Kiểm tra
+                    </button>
+
+
+                    <div
+                        class="dictation-result"
+                        id="dictationResult"
+                    ></div>
+
+                </section>
+
+
+                <!-- TRANSCRIPT -->
+
+                <section
+                    class="content-section"
+                    id="section-transcript"
+                >
+
+                    <h2>
+                        📄 Transcript
+                    </h2>
+
+                    <p>
+                        Nhấn vào một câu để nghe lại câu đó.
+                    </p>
+
+
+                    <div
+                        class="transcript"
+                        id="transcript"
+                    ></div>
+
+                </section>
+
+
+                <!-- VOCABULARY -->
+
+                <section
+                    class="content-section"
+                    id="section-vocabulary"
+                >
+
+                    <h2>
+                        📚 Vocabulary
+                    </h2>
+
+                    <p>
+                        Từ vựng quan trọng trong bài nghe.
+                    </p>
+
+
+                    <div
+                        class="vocab"
+                        id="vocab"
+                    ></div>
+
+                </section>
+
+
+                <!-- RESULT -->
+
+                <section
+                    class="content-section"
+                    id="section-result"
+                >
+
+                    <div class="final-result">
+
+                        <h2>
+                            📊 Kết quả bài học
+                        </h2>
+
+                        <div
+                            class="final-score"
+                            id="finalScore"
+                        >
+                            0
+                        </div>
+
+                        <p id="finalMessage">
+                            Hãy hoàn thành Quiz để xem điểm.
+                        </p>
+
+
+                        <button
+                            class="complete"
+                            id="completeLesson"
+                        >
+                            ✓ Hoàn thành bài học
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+            </div>
+
+
+            <!-- SIDEBAR -->
+
+            <aside>
+
+
+                <div class="sidebar-card">
+
+                    <h3>
+                        📋 Lộ trình bài học
+                    </h3>
+
+                    <div class="sidebar-step">
+                        🎧 1. Listen
+                    </div>
+
+                    <div class="sidebar-step">
+                        📝 2. Quiz
+                    </div>
+
+                    <div class="sidebar-step">
+                        ✍️ 3. Dictation
+                    </div>
+
+                    <div class="sidebar-step">
+                        📄 4. Transcript
+                    </div>
+
+                    <div class="sidebar-step">
+                        📚 5. Vocabulary
+                    </div>
+
+                    <div class="sidebar-step">
+                        📊 6. Result
+                    </div>
+
+                </div>
+
+
+                <div class="sidebar-card">
+
+                    <h3>
+                        💡 Listening Tip
+                    </h3>
+
+                    <p class="tip">
+                        Đừng cố dịch từng từ khi nghe.
+                        Hãy cố gắng hiểu ai đang nói,
+                        họ đang nói về điều gì và thông tin
+                        quan trọng là gì.
+                    </p>
+
+                </div>
+
+            </aside>
+
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/nghe-bai-hoc.js"></script>
+<script>
+  if (typeof renderNavAuth === 'function') {
+    renderNavAuth('../');
+  }
+</script>
+
+</body>
+
+</html>

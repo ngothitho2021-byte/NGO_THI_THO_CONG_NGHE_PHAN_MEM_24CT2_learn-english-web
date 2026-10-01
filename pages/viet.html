@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viết — Học Từ Đầu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="logo">Học Từ Đầu</a>
+      <ul class="nav-links">
+        <li><a href="../index.html">🏠 Trang chủ</a></li>
+        <li><a href="tu-vung.html">📇 Từ vựng</a></li>
+        <li><a href="nghe.html">🎧 Nghe</a></li>
+        <li><a href="noi.html">🗣️ Nói</a></li>
+        <li><a href="viet.html" class="active">✍️ Viết</a></li>
+      </ul>
+      <div id="navAuthSlot"></div>
+    </div>
+  </header>
+
+  <section class="level-select-wrap">
+    <div class="container">
+      <h2 class="page-title">Luyện viết theo trình độ</h2>
+      <p class="page-sub">Mỗi bài luyện viết giúp bạn áp dụng từ vựng đã học để viết câu chuyện, đoạn văn và nhận phản hồi tự động.</p>
+      <div class="level-row" id="levelRow">
+        <button class="level-pill active" data-level="A1"><span class="code">A1</span><span class="name">Mới bắt đầu</span></button>
+        <button class="level-pill" data-level="A2"><span class="code">A2</span><span class="name">Sơ cấp</span></button>
+        <button class="level-pill" data-level="B1"><span class="code">B1</span><span class="name">Trung cấp</span></button>
+        <button class="level-pill" data-level="B2"><span class="code">B2</span><span class="name">Trên trung cấp</span></button>
+        <button class="level-pill" data-level="C1"><span class="code">C1</span><span class="name">Cao cấp</span></button>
+        <button class="level-pill" data-level="C2"><span class="code">C2</span><span class="name">Thành thạo</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="topic-grid" id="topicGrid"></div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container"></div>
+  </footer>
+
+  <script src="../assets/js/auth.js"></script>
+  <script>
+    renderNavAuth('../');
+
+    // Dữ liệu chủ đề luyện viết theo từng trình độ.
+    // "href: null" nghĩa là chưa có bài viết thật -> thẻ sẽ hiện khóa 🔒
+    const topicsByLevel = {
+      A1: [
+        { emoji: '🍔', name: 'Food', meta: 'Viết đoạn văn ngắn về món ăn', href: 'viet-bai-hoc.html' },
+        { emoji: '👋', name: 'Greetings', meta: '', href: null },
+        { emoji: '👨‍👩‍👧', name: 'Family', meta: '', href: null },
+        { emoji: '🏠', name: 'Home', meta: '', href: null }
+      ],
+      A2: [
+        { emoji: '🛍️', name: 'Shopping', meta: '', href: null },
+        { emoji: '⏰', name: 'Daily Routine', meta: '', href: null },
+        { emoji: '🌤️', name: 'Weather', meta: '', href: null }
+      ],
+      B1: [
+        { emoji: '✈️', name: 'Travel Story', meta: '', href: null },
+        { emoji: '💼', name: 'Job Application', meta: '', href: null }
+      ],
+      B2: [
+        { emoji: '🏥', name: 'Health Essay', meta: '', href: null }
+      ],
+      C1: [
+        { emoji: '📰', name: 'Opinion Article', meta: '', href: null }
+      ],
+      C2: [
+        { emoji: '⚖️', name: 'Academic Report', meta: '', href: null }
+      ]
+    };
+
+    const topicGrid = document.getElementById('topicGrid');
+
+    function renderTopics(level) {
+      const topics = topicsByLevel[level] || [];
+      topicGrid.innerHTML = topics.map(t => {
+        if (t.href) {
+          return `
+            <a href="${t.href}" class="topic-card unlocked">
+              <div class="emoji">${t.emoji}</div>
+              <h3>${t.name}</h3>
+              <span class="meta">${t.meta}</span>
+            </a>`;
+        }
+        return `
+          <div class="topic-card locked">
+            <div class="emoji">${t.emoji}</div>
+            <h3>${t.name}</h3>
+            <span class="lock-tag">🔒 Sắp mở khóa</span>
+          </div>`;
+      }).join('');
+    }
+
+    // Sự kiện chuyển trình độ khi click button
+    document.querySelectorAll('.level-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.level-pill').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderTopics(btn.dataset.level);
+      });
+    });
+
+    // Mặc định hiển thị danh sách bài viết trình độ A1
+    renderTopics('A1');
+  </script>
+
+</body>
+</html>

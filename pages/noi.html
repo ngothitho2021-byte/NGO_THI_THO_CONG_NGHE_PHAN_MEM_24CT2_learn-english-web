@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nói — Học Từ Đầu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="logo"><span class="logo-icon">🌱</span> Học Từ Đầu</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html">🏠 Trang chủ</a></li>
+          <li><a href="tu-vung.html">📇 Từ vựng</a></li>
+          <li><a href="nghe.html">🎧 Nghe</a></li>
+          <li><a href="noi.html" class="active">🗣️ Nói</a></li>
+          <li><a href="doc.html">📖 Đọc</a></li>
+          <li><a href="viet.html">✍️ Viết</a></li>
+        </ul>
+      </nav>
+      <div class="header-right">
+        <button class="theme-toggle" id="themeToggle"><span class="theme-icon">🌙</span></button>
+        <div id="navAuthSlot"></div>
+      </div>
+    </div>
+  </header>
+
+  <section class="level-select-wrap">
+    <div class="container">
+      <h2 class="page-title">🗣️ Luyện nói theo tình huống</h2>
+      <p class="page-sub">Mỗi chủ đề là 1 tình huống hội thoại đời sống thật — bạn nói, hệ thống ghi lại để bạn tự nghe lại và sửa.</p>
+      <div class="level-row" id="levelRow">
+        <button class="level-pill active" data-level="A1"><span class="code">A1</span><span class="name">Mới bắt đầu</span></button>
+        <button class="level-pill" data-level="A2"><span class="code">A2</span><span class="name">Sơ cấp</span></button>
+        <button class="level-pill" data-level="B1"><span class="code">B1</span><span class="name">Trung cấp</span></button>
+        <button class="level-pill" data-level="B2"><span class="code">B2</span><span class="name">Trên trung cấp</span></button>
+        <button class="level-pill" data-level="C1"><span class="code">C1</span><span class="name">Cao cấp</span></button>
+        <button class="level-pill" data-level="C2"><span class="code">C2</span><span class="name">Thành thạo</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="container" style="padding-bottom: 60px;">
+    <div class="topic-grid" id="topicGrid"></div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <span>© 2026 Học Từ Đầu — 24CT2 Ngô Thị Thọ</span>
+    </div>
+  </footer>
+
+  <script src="../assets/js/auth.js"></script>
+  <script>
+    // Dark/Light mode
+    const _st = localStorage.getItem('htd_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', _st);
+    document.querySelector('.theme-icon').textContent = _st === 'dark' ? '☀️' : '🌙';
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const c = document.documentElement.getAttribute('data-theme');
+      const n = c === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', n);
+      localStorage.setItem('htd_theme', n);
+      document.querySelector('.theme-icon').textContent = n === 'dark' ? '☀️' : '🌙';
+    });
+
+    renderNavAuth('../');
+
+    const topicsByLevel = {
+      A1: [
+        { emoji: '🍽️', name: 'Gọi món ăn', meta: 'Hội thoại với người phục vụ', href: 'noi-bai-hoc.html' },
+        { emoji: '👋', name: 'Chào hỏi làm quen', meta: 'Giới thiệu bản thân', href: null },
+        { emoji: '👨‍👩‍👧', name: 'Giới thiệu gia đình', meta: 'Nói về người thân', href: null },
+        { emoji: '🏠', name: 'Hỏi thăm nhà cửa', meta: 'Mô tả nơi ở', href: null }
+      ],
+      A2: [
+        { emoji: '🧭', name: 'Hỏi đường', meta: 'Chỉ đường & hỏi vị trí', href: null },
+        { emoji: '🛒', name: 'Đi mua sắm', meta: 'Hỏi giá, chọn hàng', href: null },
+        { emoji: '☕', name: 'Gọi đồ uống', meta: 'Tại quán cà phê', href: null }
+      ],
+      B1: [
+        { emoji: '🏨', name: 'Đặt phòng khách sạn', meta: 'Check-in / Check-out', href: null },
+        { emoji: '💼', name: 'Phỏng vấn xin việc', meta: 'Tự giới thiệu chuyên nghiệp', href: null }
+      ],
+      B2: [{ emoji: '😠', name: 'Phàn nàn dịch vụ', meta: 'Giải quyết vấn đề', href: null }],
+      C1: [{ emoji: '🤝', name: 'Đàm phán hợp đồng', meta: 'Kinh doanh chuyên nghiệp', href: null }],
+      C2: [{ emoji: '🎤', name: 'Thuyết trình học thuật', meta: 'Presentation skills', href: null }]
+    };
+
+    function renderTopics(level) {
+      const topics = topicsByLevel[level] || [];
+      const grid   = document.getElementById('topicGrid');
+      if (topics.length === 0) {
+        grid.innerHTML = `<p style="grid-column:1/-1;text-align:center;color:var(--ink-soft);padding:40px 0;">Đang cập nhật nội dung...</p>`;
+        return;
+      }
+      grid.innerHTML = topics.map(t => {
+        if (t.href) {
+          return `<a href="${t.href}" class="topic-card unlocked">
+            <div class="emoji">${t.emoji}</div><h3>${t.name}</h3>
+            <span class="meta">${t.meta}</span></a>`;
+        }
+        return `<div class="topic-card locked">
+          <div class="emoji">${t.emoji}</div><h3>${t.name}</h3>
+          <span class="lock-tag">🔒 Sắp mở khóa</span></div>`;
+      }).join('');
+    }
+
+    document.querySelectorAll('.level-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.level-pill').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderTopics(btn.dataset.level);
+      });
+    });
+
+    renderTopics('A1');
+  </script>
+</body>
+</html>

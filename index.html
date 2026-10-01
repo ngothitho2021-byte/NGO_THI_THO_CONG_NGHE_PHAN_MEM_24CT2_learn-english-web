@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Học Từ Đầu — Lộ trình tiếng Anh A1→C2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ═══════════ HEADER ═══════════ -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🌱</span> Học Từ Đầu
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">🏠 Trang chủ</a></li>
+          <li><a href="pages/tu-vung.html">📇 Từ vựng</a></li>
+          <li><a href="pages/nghe.html">🎧 Nghe</a></li>
+          <li><a href="pages/noi.html">🗣️ Nói</a></li>
+          <li><a href="pages/doc.html">📖 Đọc</a></li>
+          <li><a href="pages/viet.html">✍️ Viết</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-right">
+        <button class="theme-toggle" id="themeToggle" title="Chuyển chế độ sáng/tối">
+          <span class="theme-icon">🌙</span>
+        </button>
+        <div id="navAuthSlot"></div>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="nav-mobile" id="navMobile">
+      <a href="index.html">🏠 Trang chủ</a>
+      <a href="pages/tu-vung.html">📇 Từ vựng</a>
+      <a href="pages/nghe.html">🎧 Nghe</a>
+      <a href="pages/noi.html">🗣️ Nói</a>
+      <a href="pages/doc.html">📖 Đọc</a>
+      <a href="pages/viet.html">✍️ Viết</a>
+    </div>
+  </header>
+
+  <!-- ═══════════ DASHBOARD (hiện khi đã đăng nhập) ═══════════ -->
+  <section class="dashboard-wrap hidden" id="dashboardSection">
+    <div class="container">
+      <div class="dashboard-grid">
+        <div class="stat-card">
+          <div class="stat-icon">🔥</div>
+          <div class="stat-value" id="streakCount">0</div>
+          <div class="stat-label">Ngày liên tiếp</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📚</div>
+          <div class="stat-value" id="wordsLearned">0</div>
+          <div class="stat-label">Từ đã học</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⭐</div>
+          <div class="stat-value" id="xpCount">0</div>
+          <div class="stat-label">Điểm XP</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🎯</div>
+          <div class="stat-value" id="levelDisplay">A1</div>
+          <div class="stat-label">Trình độ hiện tại</div>
+        </div>
+      </div>
+
+      <!-- XP progress bar -->
+      <div class="xp-bar-wrap">
+        <div class="xp-bar-label">
+          <span>Tiến độ lên <span id="nextLevel">A2</span></span>
+          <span id="xpProgress">0 / 500 XP</span>
+        </div>
+        <div class="xp-track">
+          <div class="xp-fill" id="xpFill" style="width: 0%"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ HERO (hiện khi chưa đăng nhập) ═══════════ -->
+  <section class="hero" id="heroSection">
+    <div class="container">
+      <div class="hero-content">
+        <p class="eyebrow">✨ Lộ trình học từ con số 0</p>
+        <h1>Học tiếng Anh<br><span class="hero-highlight">đúng trình độ</span> của bạn</h1>
+        <p class="hero-sub">Từ A1 đến C2 — từ vựng chuẩn, hội thoại thật, luyện đủ 4 kỹ năng theo từng chủ đề. Không cần mò mẫm, chỉ cần đi theo lộ trình.</p>
+        <div class="hero-actions">
+          <a href="signup.html" class="btn btn-primary">🚀 Bắt đầu miễn phí</a>
+          <a href="#chon-trinh-do" class="btn btn-secondary">Chọn trình độ</a>
+        </div>
+        <div class="hero-badges">
+          <span class="badge">✅ Không cần tài khoản để xem</span>
+          <span class="badge">🎧 Hội thoại thực tế</span>
+          <span class="badge">🧠 Spaced Repetition</span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card-demo">
+          <div class="demo-word">Hello</div>
+          <div class="demo-vi">Xin chào</div>
+          <div class="demo-example">"Hello, how are you today?"</div>
+          <div class="demo-btns">
+            <button class="demo-btn forget">😅 Chưa nhớ</button>
+            <button class="demo-btn know">✅ Đã nhớ</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ CHỌN TRÌNH ĐỘ ═══════════ -->
+  <section class="level-select-wrap" id="chon-trinh-do">
+    <div class="container">
+      <h2 class="page-title">Bạn đang ở trình độ nào?</h2>
+      <p class="page-sub">Chưa chắc? Cứ chọn A1 — mọi lộ trình đều bắt đầu từ chủ đề dễ nhất.</p>
+      <div class="level-row" id="levelRow">
+        <button class="level-pill active" data-level="A1">
+          <span class="code">A1</span>
+          <span class="name">Mới bắt đầu</span>
+        </button>
+        <button class="level-pill" data-level="A2">
+          <span class="code">A2</span>
+          <span class="name">Sơ cấp</span>
+        </button>
+        <button class="level-pill" data-level="B1">
+          <span class="code">B1</span>
+          <span class="name">Trung cấp</span>
+        </button>
+        <button class="level-pill" data-level="B2">
+          <span class="code">B2</span>
+          <span class="name">Trên trung cấp</span>
+        </button>
+        <button class="level-pill" data-level="C1">
+          <span class="code">C1</span>
+          <span class="name">Cao cấp</span>
+        </button>
+        <button class="level-pill" data-level="C2">
+          <span class="code">C2</span>
+          <span class="name">Thành thạo</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 5 KỸ NĂNG ═══════════ -->
+  <section class="features">
+    <div class="container">
+      <h2 class="section-title">Năm kỹ năng nền tảng</h2>
+      <p class="section-sub">Học đúng thứ tự — Từ vựng → Nghe → Nói → Đọc → Viết</p>
+
+      <div class="feature-grid">
+
+        <a href="pages/tu-vung.html" class="feature-card vocab">
+          <div class="icon">📇</div>
+          <div class="card-body">
+            <h3>Từ vựng</h3>
+            <p>Flashcard theo chủ đề chuẩn CEFR, có phát âm TTS, bài tập điền từ và ôn tập SRS thông minh.</p>
+          </div>
+          <span class="status ready">● Sẵn sàng học</span>
+        </a>
+
+        <a href="pages/nghe.html" class="feature-card listen">
+          <div class="icon">🎧</div>
+          <div class="card-body">
+            <h3>Nghe</h3>
+            <p>Hội thoại giao tiếp hàng ngày liên quan trực tiếp đến từ vựng vừa học. Nghe và điền từ còn thiếu.</p>
+          </div>
+          <span class="status ready">● Sẵn sàng học</span>
+        </a>
+
+        <a href="pages/noi.html" class="feature-card speak">
+          <div class="icon">🗣️</div>
+          <div class="card-body">
+            <h3>Nói</h3>
+            <p>Luyện hội thoại qua micro (Web Speech API). Nói — nhận lại bản ghi — tự sửa phát âm.</p>
+          </div>
+          <span class="status ready">● Sẵn sàng học</span>
+        </a>
+
+        <a href="pages/doc.html" class="feature-card read">
+          <div class="icon">📖</div>
+          <div class="card-body">
+            <h3>Đọc</h3>
+            <p>Bài đọc ngắn theo chủ đề, đúng cấp độ. Click vào từ lạ để xem nghĩa ngay, không cần tra từ điển.</p>
+          </div>
+          <span class="status ready">● Sẵn sàng học</span>
+        </a>
+
+        <a href="pages/viet.html" class="feature-card write">
+          <div class="icon">✍️</div>
+          <div class="card-body">
+            <h3>Viết</h3>
+            <p>Luyện viết câu và đoạn văn theo chủ đề vừa học. Nhận gợi ý sửa lỗi ngay lập tức.</p>
+          </div>
+          <span class="status ready">● Sẵn sàng học</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">🌱 Học Từ Đầu</div>
+          <p>Trang web học tiếng Anh miễn phí theo lộ trình A1→C2. Từ vựng chuẩn CEFR, hội thoại thực tế.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Kỹ năng</h4>
+          <a href="pages/tu-vung.html">📇 Từ vựng</a>
+          <a href="pages/nghe.html">🎧 Nghe</a>
+          <a href="pages/noi.html">🗣️ Nói</a>
+          <a href="pages/doc.html">📖 Đọc</a>
+          <a href="pages/viet.html">✍️ Viết</a>
+        </div>
+        <div class="footer-links">
+          <h4>Tài khoản</h4>
+          <a href="login.html">Đăng nhập</a>
+          <a href="signup.html">Đăng ký miễn phí</a>
+        </div>
+      <!-- </div>
+      <div class="footer-bottom">
+        <span>© 2026 Học Từ Đầu — 24CT2 Ngô Thị Thọ</span>
+        <span>Dự án học tập cá nhân, đang phát triển</span>
+      </div>
+    </div> -->
+  </footer>
+
+  <script src="assets/js/auth.js"></script>
+  <script>
+    // ═══ Dark / Light Mode ═══
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon   = themeToggle.querySelector('.theme-icon');
+    const html        = document.documentElement;
+
+    // Đọc theme đã lưu
+    const savedTheme = localStorage.getItem('htd_theme') || 'light';
+    html.setAttribute('data-theme', savedTheme);
+    themeIcon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+    themeToggle.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      const next    = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('htd_theme', next);
+      themeIcon.textContent = next === 'dark' ? '☀️' : '🌙';
+    });
+
+    // ═══ Mobile Menu ═══
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navMobile     = document.getElementById('navMobile');
+    mobileMenuBtn.addEventListener('click', () => {
+      navMobile.classList.toggle('open');
+    });
+
+    // ═══ Nav Auth ═══
+    renderNavAuth('');
+
+    // ═══ Hiện Dashboard nếu đã đăng nhập ═══
+    const session = getSession ? getSession() : null;
+    if (session) {
+      document.getElementById('heroSection').classList.add('hidden');
+      document.getElementById('dashboardSection').classList.remove('hidden');
+
+      // Load stats từ localStorage
+      const stats = JSON.parse(localStorage.getItem('htd_stats') || '{}');
+      document.getElementById('streakCount').textContent  = stats.streak  || 0;
+      document.getElementById('wordsLearned').textContent = stats.words   || 0;
+      document.getElementById('xpCount').textContent      = stats.xp      || 0;
+      document.getElementById('levelDisplay').textContent = session.level || 'A1';
+
+      // XP bar
+      const xp       = stats.xp || 0;
+      const xpNeeded = 500;
+      const pct      = Math.min((xp % xpNeeded) / xpNeeded * 100, 100);
+      document.getElementById('xpFill').style.width     = pct + '%';
+      document.getElementById('xpProgress').textContent = `${xp % xpNeeded} / ${xpNeeded} XP`;
+    }
+
+    // ═══ Chọn trình độ ═══
+    document.querySelectorAll('.level-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.level-pill').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        localStorage.setItem('hoc_tu_dau_level', btn.dataset.level);
+      });
+    });
+
+    // Khôi phục trình độ đã chọn
+    const savedLevel = localStorage.getItem('hoc_tu_dau_level');
+    if (savedLevel) {
+      document.querySelectorAll('.level-pill').forEach(b => {
+        b.classList.toggle('active', b.dataset.level === savedLevel);
+      });
+    }
+  </script>
+</body>
+</html>

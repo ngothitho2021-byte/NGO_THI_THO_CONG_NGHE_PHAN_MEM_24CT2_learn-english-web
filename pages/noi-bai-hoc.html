@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luyện Nói — Học Từ Đầu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="logo">Học Từ Đầu</a>
+      <ul class="nav-links">
+        <li><a href="../index.html">🏠 Trang chủ</a></li>
+        <li><a href="tu-vung.html">📇 Từ vựng</a></li>
+        <li><a href="nghe.html">🎧 Nghe</a></li>
+        <li><a href="noi.html" class="active">🗣️ Nói</a></li>
+        <li><a href="viet.html">✍️ Viết</a></li>
+      </ul>
+      <div id="navAuthSlot"></div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: 30px; padding-bottom: 50px;">
+    <section class="speaking-section">
+      <h2 id="speakingTitle" class="page-title">🗣️ Luyện Nói Theo Hội Thoại</h2>
+      
+      <!-- Khu vực hiển thị kịch bản hội thoại -->
+      <div id="speakingPracticeRoot"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      Dự án học tiếng Anh cá nhân — đang trong quá trình xây dựng.
+    </div>
+  </footer>
+
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/noi-bai-hoc.js"></script>
+  <script>
+    if (typeof renderNavAuth === 'function') {
+      renderNavAuth('../');
+    }
+  </script>
+
+</body>
+</html>

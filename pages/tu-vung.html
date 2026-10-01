@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Từ Vựng — Học Từ Đầu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="logo"><span class="logo-icon">🌱</span> Học Từ Đầu</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html">🏠 Trang chủ</a></li>
+          <li><a href="tu-vung.html" class="active">📇 Từ vựng</a></li>
+          <li><a href="nghe.html">🎧 Nghe</a></li>
+          <li><a href="noi.html">🗣️ Nói</a></li>
+          <li><a href="doc.html">📖 Đọc</a></li>
+          <li><a href="viet.html">✍️ Viết</a></li>
+        </ul>
+      </nav>
+      <div class="header-right">
+        <button class="theme-toggle" id="themeToggle"><span class="theme-icon">🌙</span></button>
+        <div id="navAuthSlot"></div>
+      </div>
+    </div>
+  </header>
+
+
+  <section class="level-select-wrap">
+    <div class="container">
+      <h2 class="page-title">Từ vựng theo trình độ</h2>
+      <p class="page-sub">Chọn trình độ, sau đó chọn chủ đề bạn muốn học hoặc ôn tập từ vựng.</p>
+      
+      <!-- Thanh chọn trình độ -->
+      <div class="level-row" id="levelRow">
+        <button class="level-pill active" data-level="A1"><span class="code">A1</span><span class="name">Mới bắt đầu</span></button>
+        <button class="level-pill" data-level="A2"><span class="code">A2</span><span class="name">Sơ cấp</span></button>
+        <button class="level-pill" data-level="B1"><span class="code">B1</span><span class="name">Trung cấp</span></button>
+        <button class="level-pill" data-level="B2"><span class="code">B2</span><span class="name">Trên trung cấp</span></button>
+        <button class="level-pill" data-level="C1"><span class="code">C1</span><span class="name">Cao cấp</span></button>
+        <button class="level-pill" data-level="C2"><span class="code">C2</span><span class="name">Thành thạo</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <!-- Nút lối tắt vào thẳng phần Ôn Tập -->
+    <div style="margin-bottom: 20px; text-align: right;">
+      <a id="reviewShortcutBtn" href="tu-vung-bai-hoc.html?level=A1&tab=review" class="btn">🔁 Ôn tập từ chưa thuộc (A1)</a>
+    </div>
+
+    <!-- Khung lưới hiển thị danh sách Chủ đề -->
+    <div class="topic-grid" id="topicGrid"></div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      Dự án học tiếng Anh cá nhân — đang trong quá trình xây dựng.
+    </div>
+  </footer>
+
+  <script src="../assets/js/auth.js"></script>
+  <script>
+    // Dark/Light mode
+    const _st = localStorage.getItem('htd_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', _st);
+    document.querySelector('.theme-icon').textContent = _st === 'dark' ? '☀️' : '🌙';
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const c = document.documentElement.getAttribute('data-theme');
+      const n = c === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', n);
+      localStorage.setItem('htd_theme', n);
+      document.querySelector('.theme-icon').textContent = n === 'dark' ? '☀️' : '🌙';
+    });
+
+    renderNavAuth('../');
+
+    let currentLevel = 'A1';
+
+    const topicsByLevel = {
+      A1: [
+        { id: 'food', emoji: '🍔', name: 'Food', meta: 'Đồ ăn & Thức uống', locked: false },
+        { id: 'greetings', emoji: '👋', name: 'Greetings', meta: 'Chào hỏi & Giao tiếp', locked: true },
+        { id: 'family', emoji: '👨‍👩‍👧', name: 'Family', meta: 'Gia đình', locked: true },
+        { id: 'home', emoji: '🏠', name: 'Home', meta: 'Nhà cửa', locked: true }
+      ],
+      A2: [
+        { id: 'shopping', emoji: '🛍️', name: 'Shopping', meta: 'Mua sắm', locked: true },
+        { id: 'weather', emoji: '🌤️', name: 'Weather', meta: 'Thời tiết', locked: true }
+      ],
+      B1: [
+        { id: 'travel', emoji: '✈️', name: 'Travel', meta: 'Du lịch', locked: true },
+        { id: 'work', emoji: '💼', name: 'Work', meta: 'Công việc', locked: true }
+      ],
+      B2: [], C1: [], C2: []
+    };
+
+    const topicGrid = document.getElementById('topicGrid');
+    const reviewShortcutBtn = document.getElementById('reviewShortcutBtn');
+
+    function renderTopics(level) {
+      currentLevel = level;
+      reviewShortcutBtn.href = `tu-vung-bai-hoc.html?level=${level}&tab=review`;
+      reviewShortcutBtn.innerText = `🔁 Ôn tập từ chưa thuộc (${level})`;
+
+      // Kiểm tra trạng thái đã học xong bài Food chưa
+      const isFoodCompleted = localStorage.getItem('completed_topic_food') === 'true';
+
+      const rawTopics = topicsByLevel[level] || [];
+      const topics = rawTopics.map(t => {
+        if (t.id === 'greetings') {
+          return { ...t, locked: !isFoodCompleted };
+        }
+        return t;
+      });
+
+      if (topics.length === 0) {
+        topicGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center;">Chưa có nội dung cho trình độ này.</p>`;
+        return;
+      }
+
+      topicGrid.innerHTML = topics.map(t => {
+        if (!t.locked) {
+          return `
+            <a href="tu-vung-bai-hoc.html?level=${level}&topic=${t.id}" class="topic-card unlocked">
+              <div class="emoji">${t.emoji}</div>
+              <h3>${t.name}</h3>
+              <span class="meta">${t.meta}</span>
+            </a>`;
+        }
+        return `
+          <div class="topic-card locked">
+            <div class="emoji">${t.emoji}</div>
+            <h3>${t.name}</h3>
+            <span class="lock-tag">🔒 Sắp mở khóa</span>
+          </div>`;
+      }).join('');
+    }
+
+    // Sự kiện chuyển Trình độ (A1-C2)
+    document.querySelectorAll('.level-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.level-pill').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderTopics(btn.dataset.level);
+      });
+    });
+
+    renderTopics('A1');
+  </script>
+
+</body>
+</html>

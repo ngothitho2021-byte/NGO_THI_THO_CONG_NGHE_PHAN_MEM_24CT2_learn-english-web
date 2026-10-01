@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luyện Đọc — Học Từ Đầu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="logo"><span class="logo-icon">🌱</span> Học Từ Đầu</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html">🏠 Trang chủ</a></li>
+          <li><a href="tu-vung.html">📇 Từ vựng</a></li>
+          <li><a href="nghe.html">🎧 Nghe</a></li>
+          <li><a href="noi.html">🗣️ Nói</a></li>
+          <li><a href="doc.html" class="active">📖 Đọc</a></li>
+          <li><a href="viet.html">✍️ Viết</a></li>
+        </ul>
+      </nav>
+      <div class="header-right">
+        <button class="theme-toggle" id="themeToggle"><span class="theme-icon">🌙</span></button>
+        <div id="navAuthSlot"></div>
+      </div>
+    </div>
+  </header>
+
+  <section class="level-select-wrap">
+    <div class="container">
+      <h2 class="page-title">📖 Luyện Đọc</h2>
+      <p class="page-sub">Bài đọc ngắn theo chủ đề — click vào từ lạ để xem nghĩa ngay, không cần tra từ điển.</p>
+      <div class="level-row" id="levelRow">
+        <button class="level-pill active" data-level="A1"><span class="code">A1</span><span class="name">Mới bắt đầu</span></button>
+        <button class="level-pill" data-level="A2"><span class="code">A2</span><span class="name">Sơ cấp</span></button>
+        <button class="level-pill" data-level="B1"><span class="code">B1</span><span class="name">Trung cấp</span></button>
+        <button class="level-pill" data-level="B2"><span class="code">B2</span><span class="name">Trên trung cấp</span></button>
+        <button class="level-pill" data-level="C1"><span class="code">C1</span><span class="name">Cao cấp</span></button>
+        <button class="level-pill" data-level="C2"><span class="code">C2</span><span class="name">Thành thạo</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="container" style="padding-bottom: 60px;">
+    <div class="topic-grid" id="topicGrid"></div>
+  </section>
+
+  <!-- Tooltip từ vựng -->
+  <div class="word-tooltip" id="wordTooltip">
+    <div class="tooltip-word" id="tooltipWord"></div>
+    <div class="tooltip-vi" id="tooltipVi"></div>
+    <button class="tooltip-close" onclick="document.getElementById('wordTooltip').classList.remove('show')">✕</button>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <span>© 2026 Học Từ Đầu — 24CT2 Ngô Thị Thọ</span>
+    </div>
+  </footer>
+
+  <script src="../assets/js/auth.js"></script>
+  <script>
+    // Theme
+    const savedTheme = localStorage.getItem('htd_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    const ti = document.querySelector('.theme-icon');
+    if(ti) ti.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const c = document.documentElement.getAttribute('data-theme');
+      const n = c === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', n);
+      localStorage.setItem('htd_theme', n);
+      document.querySelector('.theme-icon').textContent = n === 'dark' ? '☀️' : '🌙';
+    });
+
+    renderNavAuth('../');
+
+    // Dữ liệu chủ đề đọc
+    const readingTopics = {
+      A1: [
+        { id: 'food-read', emoji: '🍔', name: 'Food & Drinks', meta: 'Ăn uống', locked: false },
+        { id: 'greet-read', emoji: '👋', name: 'Greetings', meta: 'Chào hỏi', locked: false },
+        { id: 'family-read', emoji: '👨‍👩‍👧', name: 'My Family', meta: 'Gia đình', locked: true },
+        { id: 'home-read', emoji: '🏠', name: 'My Home', meta: 'Nhà cửa', locked: true },
+      ],
+      A2: [
+        { id: 'shop-read', emoji: '🛍️', name: 'Shopping', meta: 'Mua sắm', locked: true },
+        { id: 'weather-read', emoji: '🌤️', name: 'Weather', meta: 'Thời tiết', locked: true },
+      ],
+      B1: [
+        { id: 'travel-read', emoji: '✈️', name: 'Travel', meta: 'Du lịch', locked: true },
+        { id: 'work-read', emoji: '💼', name: 'Work & Career', meta: 'Công việc', locked: true },
+      ],
+      B2: [], C1: [], C2: []
+    };
+
+    function renderTopics(level) {
+      const topics = readingTopics[level] || [];
+      const grid = document.getElementById('topicGrid');
+
+      if (topics.length === 0) {
+        grid.innerHTML = `<p style="grid-column:1/-1;text-align:center;color:var(--ink-soft);padding:40px 0;">Chưa có nội dung cho trình độ này. Đang cập nhật...</p>`;
+        return;
+      }
+
+      grid.innerHTML = topics.map(t => {
+        if (!t.locked) {
+          return `<a href="doc-bai-hoc.html?topic=${t.id}&level=${level}" class="topic-card unlocked">
+            <div class="emoji">${t.emoji}</div>
+            <h3>${t.name}</h3>
+            <span class="meta">${t.meta}</span>
+          </a>`;
+        }
+        return `<div class="topic-card locked">
+          <div class="emoji">${t.emoji}</div>
+          <h3>${t.name}</h3>
+          <span class="lock-tag">🔒 Sắp mở khóa</span>
+        </div>`;
+      }).join('');
+    }
+
+    document.querySelectorAll('.level-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.level-pill').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderTopics(btn.dataset.level);
+      });
+    });
+
+    renderTopics('A1');
+  </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luyện viết — Học Từ Đầu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="logo">Học Từ Đầu</a>
+      <ul class="nav-links">
+        <li><a href="../index.html">🏠 Trang chủ</a></li>
+        <li><a href="tu-vung.html">📇 Từ vựng</a></li>
+        <li><a href="nghe.html">🎧 Nghe</a></li>
+        <li><a href="noi.html">🗣️ Nói</a></li>
+        <li><a href="viet.html" class="active">✍️ Viết</a></li>
+      </ul>
+      <div id="navAuthSlot"></div>
+    </div>
+  </header>
+
+  <section class="writing-section">
+    <div class="container">
+      <h2>✍️ Viết — trình độ <span id="levelLabel">A1</span></h2>
+
+      <!-- Tab chủ đề: mỗi <button> ứng với 1 topicId, data-topic để JS đọc -->
+      <div class="topic-tabs" id="topicTabs">
+        <button class="topic-tab active" data-topic="food">Food</button>
+        <!-- Thêm chủ đề mới: copy 1 dòng <button> ở đây,
+             rồi thêm object tương ứng trong TOPICS ở viet-bai-hoc.js -->
+      </div>
+
+      <div class="writing-box" id="writingBox">
+        <h3 id="topicTitle"></h3>
+        <p class="prompt" id="topicPrompt"></p>
+
+        <textarea
+          id="writingInput"
+          class="textarea tall"
+          placeholder="Hãy viết câu chuyện, đoạn văn... không giới hạn số câu, dùng các từ vựng đã học nhé!"
+        ></textarea>
+
+        <div class="writing-controls">
+          <button class="btn" id="checkBtn">✅ Kiểm tra &amp; sửa lỗi</button>
+          <button class="btn ghost" id="saveBtn">💾 Lưu bài</button>
+        </div>
+
+        <div class="writing-result" id="writingResult" style="display:none;">
+          <h4>Kết quả review:</h4>
+          <div id="resultSummary"></div>
+          <div id="resultIssues"></div>
+          <h4>Bản chỉnh cuối:</h4>
+          <p id="resultCorrected"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/viet-bai-hoc.js"></script>
+  <script>
+    renderNavAuth('');
+  </script>
+
+</body>
+</html>
