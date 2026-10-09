@@ -1,22 +1,20 @@
 from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, declarative_base
 
-# SQLite lưu tại: backend/hoc_tu_dau.db
-DATABASE_URL = "sqlite:///./hoc_tu_dau.db"
+DATABASE_URL = "mysql+pymysql://root:@127.0.0.1:3306/hoc_tu_dau?charset=utf8mb4"
 
 engine = create_engine(
-    DATABASE_URL,
-    connect_args={"check_same_thread": False}  # cần cho SQLite + FastAPI
+    DATABASE_URL
 )
 
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+SessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=engine
+)
 
-# Tất cả model kế thừa Base này để SQLAlchemy tự tạo bảng
 Base = declarative_base()
 
-
-# ── Dependency: cấp 1 session DB mỗi request, tự đóng sau khi xong ──
 def get_db():
     db = SessionLocal()
     try:

@@ -124,7 +124,7 @@ function renderNavAuth(rootPrefix) {
     slot.innerHTML = `
       <div class="nav-user">
         <div class="avatar">${initial}</div>
-        <span>${session.name}</span>
+        <a href="${rootPrefix}tai-khoan.html" class="account-link" style="color:inherit;text-decoration:none;font-weight:600">${session.name} · Tài khoản</a>
         <a href="#" class="logout-link" id="logoutLink">Đăng xuất</a>
       </div>
     `;
